@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: webbook
+  namespace: app
+spec:
+  project: app
+  source:
+    repoURL: git@github.com:albertorodgz/frontend.git
+    targetRevision: HEAD
+    path: webbook
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app
