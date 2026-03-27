@@ -2,13 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: webbook
-  namespace: app
+  namespace: argocd
 spec:
   project: app
   source:
-    repoURL: git@github.com:albertorodgz/frontend.git
+    repoURL: https://github.com/albertorodgz/frontend
     targetRevision: HEAD
-    path: webbook
+    path: helm-chart
   destination:
     server: https://kubernetes.default.svc
     namespace: app
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
